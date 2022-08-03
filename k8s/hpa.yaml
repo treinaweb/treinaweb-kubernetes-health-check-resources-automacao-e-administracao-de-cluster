@@ -1,0 +1,12 @@
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: nodehpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: nodeserver
+  minReplicas: 1
+  maxReplicas: 30
+  targetCPUUtilizationPercentage: 10

@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: jobnode
+spec:
+  template:
+    spec:
+      containers:
+        - name: jobnode
+          image: busybox
+          command: 
+            - /bin/sh
+            - -c
+            - echo Treinaweb Devops
+      restartPolicy: Never
+  backoffLimit: 4

@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodeserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nodeserver
+  template:
+    metadata:
+      labels:
+        app: nodeserver
+    spec:
+      containers:
+        - name: nodeserver
+          image: thiagodavoglio/nodews:v3
+          ports:
+           - containerPort: 3000
+          
+          resources:
+            requests:
+              cpu: 300m
+              memory: 20Mi
+            limits:
+              cpu: 500m
+              memory: 40Mi
+
+
+          # startupProbe:
+          #   httpGet:
+          #     path: /healthz
+          #     port: 3000
+          #   periodSeconds: 3
+          #   failureThreshold: 40
+ 
+          # readinessProbe:
+          #   httpGet:
+          #     path: /healthz
+          #     port: 3000
+          #   periodSeconds: 3
+          #   failureThreshold: 1
+          
+          # livenessProbe:
+          #   httpGet:
+          #     path: /healthz
+          #     port: 3000
+          #   periodSeconds: 3
+          #   failureThreshold: 1
+          #   timeoutSeconds: 1
+          #   successThreshold: 1
+

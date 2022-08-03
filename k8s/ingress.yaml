@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nodeingress
+spec:
+  tls:
+    - secretName: secret-tls
+  rules:
+    - http:
+       paths:
+         - path: /
+           pathType: Prefix
+           backend:
+             service:
+               name: nodeservice
+               port:
+                 number: 80
